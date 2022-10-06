@@ -46,7 +46,36 @@ app.post('/glossaryList', (req, res) => {
   })
 })
 
-// app.put()
+app.put('/glossaryList', (req, res) => {
+  var deleteName = req.body.wordname
+  var addData = req.body
+  db.recodelete(deleteName)
+  .then(() => {
+    db.listSave(addData)
+    .then(() => {
+      res.send('update completed')
+    })
+  })
+  .catch((err) => {
+    res.send(err);
+  })
+})
+
+app.delete('/glossaryList', (req, res) => {
+
+  var deleteName = req.body.wordname
+  console.log('this is delete start', req)
+  db.recodelete(deleteName)
+  .then(() => {
+    console.log('this is delete then')
+    res.send('delete completed')
+
+  })
+  .catch((err) => {
+    res.send('err')
+  })
+})
+
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);

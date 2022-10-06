@@ -39,6 +39,9 @@ const listGet = function () {
   return GloModel.find().exec()
 }
 
+const recodelete = function (name) {
+  return GloModel.find({ wordname:name }).remove().exec()
+}
 // laptop.save((err) => {
 //   if (err) {
 //     console.log(err)
@@ -54,4 +57,5 @@ const listGet = function () {
 module.exports.GloModel = GloModel;
 module.exports.listSave = listSave;
 module.exports.listGet = listGet;
+module.exports.recodelete = recodelete;
 
